@@ -1,4 +1,4 @@
-# SPA
+# Bingo
 
 The frontend application for bingo game, written in React and Vite.
 
