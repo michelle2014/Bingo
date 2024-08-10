@@ -2,6 +2,7 @@ import {  Box, Container, Button, FormControl, FormErrorMessage, FormLabel, Inpu
 import { Field, Form, Formik } from 'formik';
 import { useState } from 'react';
 import React from 'react';
+import Share from './Share';
 
 function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -217,7 +218,9 @@ function App() {
           {!!markedButton ? <Alert />
             : <Button onClick={() => handleGenerate()} colorScheme='blue'>Generate</Button>
           }
-        </VStack>}
+          <Share />
+        </VStack>
+      }
     </VStack>
   )
 }
