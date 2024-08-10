@@ -1,13 +1,31 @@
 import {  Box, Container, Button, FormControl, FormErrorMessage, FormLabel, Input, Grid, GridItem, VStack, AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, useDisclosure } from '@chakra-ui/react'
 import { Field, Form, Formik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import Share from './Share';
 
 function App() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isGenerated, setIsGenerated] = useState(false);
-  const [markedButton, setMarkedButton] = useState<null | number>(null);
+  const [isSubmitted, setIsSubmitted] = useState(() => {
+    return JSON.parse(localStorage.getItem('isSubmitted') || 'false');
+  });
+  const [isGenerated, setIsGenerated] = useState(() => {
+    return JSON.parse(localStorage.getItem('isGenerated') || 'false');
+  });
+  const [markedButton, setMarkedButton] = useState<null | number>(() => {
+    return JSON.parse(localStorage.getItem('markedButton') || 'null');
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isSubmitted', JSON.stringify(isSubmitted));
+  }, [isSubmitted]);
+
+  useEffect(() => {
+    localStorage.setItem('isGenerated', JSON.stringify(isGenerated));
+  }, [isGenerated]);
+
+  useEffect(() => {
+    localStorage.setItem('markedButton', JSON.stringify(markedButton));
+  }, [markedButton]);
 
   function validateName(value: string) {
     let error
